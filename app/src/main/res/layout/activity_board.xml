@@ -4,6 +4,8 @@
     android:orientation="vertical"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/transitions_container"
+    android:background="#ffBE80FF"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Board">
 
 
@@ -17,6 +19,7 @@
         android:id="@+id/mainBoard"
         android:nestedScrollingEnabled="false"
         >
+
 
         <TableRow
             style="@style/TableRow"
@@ -59,6 +62,8 @@
 
             </TextView>
 
+
+
         </TableRow>
         <TableRow
             style="@style/TableRow"
@@ -80,9 +85,26 @@
 
             </TextView>
 
+
+
         </TableRow>
 
     </TableLayout>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DO MAGIC"/>
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Transitions are awesome!"
+        android:visibility="gone"/>
+
 
     <TextView
         android:layout_width="fill_parent"
@@ -101,5 +123,20 @@
         android:text="Reset Match"
         android:id="@+id/reset"
         />
+
+    <Button
+        android:id="@+id/button_destroy"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="54dp"
+        android:onClick="playSoundDestroy"
+        android:text="jowe" />
+
 
 </LinearLayout>
