@@ -14,14 +14,7 @@ import android.media.SoundPool;
 import android.media.AudioManager;
 import android.media.AudioAttributes;
 import android.os.Build;
-
-import android.util.Log;
-import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.TranslateAnimation;
-import android.view.animation.Animation.AnimationListener;
-import android.widget.ImageView;
+import com.airbnb.lottie.LottieAnimationView;
 
 public class Board extends AppCompatActivity {
 
@@ -50,6 +43,7 @@ public class Board extends AppCompatActivity {
     TextView tv_turn;
     char [][] board;
     char turn;
+    LottieAnimationView animationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,18 +98,19 @@ public class Board extends AppCompatActivity {
         this.soundIdDestroy = this.soundPool.load(this, R.raw.victory,1);
 
         // Load sound file (gun.wav) into SoundPool.
-        this.soundIdGun = this.soundPool.load(this, R.raw.victory,1);
+        this.soundIdGun = this.soundPool.load(this, R.raw.click,1);
 
 
 
         //sound end//
 
-
-
         size = Integer.parseInt(getString(R.string.size_of_board));
         board = new char [size][size];
         mainBoard = (TableLayout) findViewById(R.id.mainBoard);
         tv_turn = (TextView) findViewById(R.id.turn);
+        animationView = (LottieAnimationView) findViewById(R.id.animation_view);
+
+
 
         resetBoard();
         tv_turn.setText("Turn: "+turn);
@@ -244,6 +239,7 @@ public class Board extends AppCompatActivity {
 
     View.OnClickListener Move(final int r, final int c, final TextView tv){
 
+
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -268,13 +264,20 @@ public class Board extends AppCompatActivity {
                         stopMatch();
                     }
                     else{
-                        tv_turn.setText(turn+" Loses!");
+                        if(turn == 'O') {
+                            tv_turn.setText( " X Win!");
+                        }
+                        else {
+                            tv_turn.setText( " O Win!");
+                        }
+                        playSoundDestroy(v);
+                        animationView.playAnimation();
                         stopMatch();
                     }
                 }
-                else{
-                    tv_turn.setText(tv_turn.getText()+" Please choose a Cell Which is not already Occupied");
-                }
+                //else{
+                    //tv_turn.setText(tv_turn.getText()+" Please choose a Cell Which is not already Occupied");
+               // }
             }
         };
     }
